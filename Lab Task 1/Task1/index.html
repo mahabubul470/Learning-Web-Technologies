@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Blood Bank Forum">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <title>Assignment</title>
+    <style>
+          body {
+                background-color : #484848;
+                margin: 0;
+                padding: 0;
+          }
+          form {
+                width: 40%;
+                margin: 0 auto;
+          }
+          fieldset {
+              background-color: #eeeeee;
+              margin: 20px;
+          }
+          legend {
+              background-color: #2471A3;
+              color: #eeeeee;
+              padding: 5px 10px;
+              font-size: 15px;
+          }
+          input,select,textarea,ul {
+              float: right;
+              margin-right: 10px;
+          }  
+          .input-group{
+              margin-left: 100px;
+          }
+       
+          .button {
+              background-color: #4CAF50; /* Green */
+              border: none;
+              color: white;
+              padding: 10px 32px;
+              text-align: center;
+              text-decoration: none;
+              display: inline-block;
+              font-size: 16px;
+          }
+          h3,sup{
+            color: orangered;
+          }
+          label{
+            font-weight: bold;
+           
+          }
+          a:hover{
+            color:red;
+          }
+    </style>
+</head>
+<body>
+   
+    <form action="submitted.html">
+        <fieldset>
+        <legend> Denotes Required Information <sub>  Donation | Confermation | Thank You</sub></legend>
+          <div class="input-group">
+            <h3>Donor Information</h3>
+            <label for="fname">First name<sup>*</sup> </label>
+            <input type="text" id="fname" name="fname" size="50"><br><br>
+            <label for="lname">Last name <sup>*</sup></label>
+            <input type="text" id="lname" name="lname"size="50"><br><br>
+            <label for="company">Company <sup>*</sup></label>
+            <input type="text" id="company" name="Compny"size="50"><br><br>
+            <label for="address-1">Address 1 <sup>*</sup></label>
+            <input type="text" id="address-1" name="address-1" size="50"><br><br>
+            <label for="address-2">Address 2 <sup>*</sup></label>
+            <input type="text" id="address-2" name="address-2" size="50"><br><br>
+            <label for="city">City <sup>*</sup></label>
+            <input type="text" id="city" name="city" size="50"><br><br>
+            <label for="state">State <sup>*</sup></label>
+            <select name="states" id="state" >
+              <option value="Dhaka">Dhaka</option>
+              <option value="Rajshahi">Rajshahi</option>
+              <option value="Cumilla">Cumilla</option>
+              <option value="Chittagong">Chittagong</option>
+            </select> <br><br>
+            <label for="zip">Zip Code <sup>*</sup ></label>
+            <input type="zip" id="zip" name="zip" size="50"><br><br>
+            <label for="country">Country <sup>*</sup></label>
+            <select name="country" id="country">
+              <option value="Bangladesh">Bangladesh</option>
+              <option value="India">India</option>
+              <option value="China">China</option>
+              <option value="Pakisthan">Pakisthan</option>
+            </select> <br><br>
+            <label for="phone">Phone <sup>*</sup></label>
+            <input type="tel" id="phone" name="phone" size="50"><br><br>
+            <label for="fax">Fax <sup>*</sup></label>
+            <input type="fax" id="fax" name="fax" size="50"><br><br>
+            <label for="email">Email <sup>*</sup></label>
+            <input type="email" id="email" name="email" size="50"><br><br>
+            <label for="birthday">Birthday <sup>*</sup></label>
+            <input type="date" id="birthday" name="birthday" size="50"><br><br>
+            <label for="donation">Donation Amount<sup>*</sup> :</label>
+            <input type="radio" id="donation" name="gender" value="20" style="float: none;">
+            <label for="20" style="margin:auto;">$20 </label>
+            <input type="radio" id="donation" name="gender" value="40" style="float: none;">
+            <label for="male">$40 </label>
+            <input type="radio" id="donation" name="gender" value="50" style="float: none;">
+            <label for="male">$50 </label>
+            <input type="radio" id="donation" name="gender" value="100" style="float: none;">
+            <label for="male">$100 </label><br><br>
+            <br><label for="other-amount">Other Amount </label>
+            <input type="number" id="other-amount" name="other-amount" size="50"><br><br>
+            <label for="recur-donate">Recurring Donation </label>
+            <input type="checkbox" id="recur-donate" name="recur-donate" style="float: none;margin-left: 10px;">
+            <label style="margin-left: 5px;float: none">I am interested in giving on a regular basis</label><br><br>
+            <label for="credit">Credit Card</label>
+            <input type="number" id="credit" name="credit" size="50"><br><br>
+
+
+          <h3>Honorarium and Memorial Donation Information</h3>
+          <label>I would like to make this donation<sup>*</sup></label>
+          <input type="radio" id="donation" name="gender" value="20" style="float: none;">
+            <label for="male">To Honur </label>
+            <input type="radio" id="donation" name="gender" value="20" style="float: none;">
+            <label for="male">In memory of </label><br><br>
+            <label for="name">Name <sup>*</sup></label>
+            <input type="text" id="name" name="name" size="50"><br><br>
+            <label for="address-3">Address<sup>*</sup></label>
+            <input type="text" id="address-3" name="address-3" size="50"><br><br>
+            <label for="city-1">City<sup>*</sup></label>
+            <input type="text" id="city-1" name="city-1" size="50"><br><br>
+            <label for="states">State<sup>*</sup></label>
+            <select name="states" id="states">
+              <option value="Dhaka">Dhaka</option>
+              <option value="Rajshahi">Rajshahi</option>
+              <option value="Cumilla">Cumilla</option>
+              <option value="Chittagong">Chittagong</option>
+            </select> <br><br>
+            <label for="zip-1">Zip Code <sup>*</sup></label>
+            <input type="zip" id="zip-1" name="zip" size="50"><br><br>
+
+            <h3>Additional Information</h3><br>
+            <label >Please enter your name,company or organization as you like to appear in out publication:</label><br><br>
+            <label for="name1">Name <sup>*</sup></label>
+            <input type="text" id="name1" name="name" size="50"><br><br>
+            <input type="checkbox" id="recur-donate" name="recur-donate" style="float: none;margin-left: 10px;" >
+            <label style="margin-left: 5px;float: none">I would like my gift to remain anonymous</label><br><br>
+            <input type="checkbox" id="recur-donate" name="recur-donate" style="float: none;margin-left: 10px;">
+            <label style="margin-left: 5px;float: none">My Employer offers a matching gift program.I will mail the matching gift form</label><br><br>
+            <input type="checkbox" id="recur-donate" name="recur-donate" style="float: none;margin-left: 10px;">
+            <label style="margin-left: 5px;float: none">Please save the cost of acknowledging this gift by not mailing a thank you later</label><br><br>
+            <label >Comments:</label>
+            <textarea rows="3" cols="50" name="comment" form="usrform"></textarea><br><br><br><br>
+            <label for="name1">How may we contact you?</label><br><br>
+            <input type="checkbox" id="recur-donate" name="recur-donate" style="float: none;margin-left: 20%;">
+            <label style="margin-left: 5px;float: none">Email</label><br><br>
+            <input type="checkbox" id="recur-donate" name="recur-donate" style="float: none;margin-left: 20%;">
+            <label style="margin-left: 5px;float: none">Postal Mail</label><br><br>
+            <input type="checkbox" id="recur-donate" name="recur-donate" style="float: none;margin-left: 20%;">
+            <label style="margin-left: 5px;float: none">Telephone</label><br>
+            <h4>I would like to recuve newsletters and information about special events by:</h4>
+            <input type="checkbox" id="recur-donate" name="recur-donate" style="float: none;margin-left: 20%;">
+            <label style="margin-left: 5px;float: none">Email</label><br><br>
+            <input type="checkbox" id="recur-donate" name="recur-donate" style="float: none;margin-left: 20%;">
+            <label style="margin-left: 5px;float: none">Postal Mail</label><br><br>
+            <input type="checkbox" id="recur-donate" name="recur-donate" style="float: none;">
+            <label style="margin-left: 5px;float: none">I would like information about vlounteering with the</label><br><br>
+            <button type="submit" class="button" style="margin-left:30%;">Submit</button>
+            <button type="submit" class="button"  style="margin-left: 40px; background-color: orangered;">Reset</button><br><br>
+            <ul>
+              <li>Donate online with confidence.You are on a secure server</li>
+            </ul><br><br><br>
+            <label style="float: right;">If you have any problems or questions, please contact <a href="/index.html"> support.</a> </label>
+          </div>         
+        </fieldset>
+      </form>  
+</body>
+</html>
