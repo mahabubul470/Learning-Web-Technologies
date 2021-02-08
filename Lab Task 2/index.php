@@ -105,7 +105,7 @@
 
 		if (empty($_POST["deg"])) {
 			$degErr = "Degree is required";
-		} else if ($_POST["deg"] > 2) {
+		} else if (sizeof($_POST["deg"]) < 2) {
 			$degErr = "At Least 2 must be checked";
 		} else {
 			$flag = true;
