@@ -76,16 +76,12 @@
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		if (empty($_POST["name"])) {
 			$nameErr = "Name is required";
+		} else if (!preg_match("/ /i", $name)) {
+			$nameErr = 'Must Contains Two Words';
+		} else if (!preg_match("/^[a-zA-Z-' ]*$/", $name)) {
+			$nameErr = "Only letters and white space allowed";
 		} else {
 			$name = test_input($_POST["name"]);
-
-			$search = ' ';
-			if (!preg_match("/{$search}/i", $name)) {
-				$nameErr = 'Must Contains Two Words';
-			}
-			if (!preg_match("/^[a-zA-Z-' ]*$/", $name)) {
-				$nameErr = "Only letters and white space allowed";
-			}
 		}
 
 		if (empty($_POST["email"])) {
@@ -165,7 +161,7 @@
 		<span class="error">* <?php echo $ddErr; ?></span>
 		<input type="number" name="mm" value="<?php echo $dd; ?>" min="1" max="12">
 		<span class="error">* <?php echo $mmErr; ?></span>
-		<input type="number" name="yy" value="<?php echo $dd; ?>" min="1900" max="10000">
+		<input type="number" name="yy" value="<?php echo $dd; ?>" min="1953" max="1998">
 		<span class="error">* <?php echo $yyErr; ?></span>
 		<br><br>
 		Degree:
