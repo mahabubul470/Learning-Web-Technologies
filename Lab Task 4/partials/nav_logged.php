@@ -5,6 +5,6 @@ $name = $_COOKIE[$cookie_name];
 <nav>
     <ul>
         <li>logged in as <?php echo $name ?></li>
-        <li><a href="">Logout</a></li>
+        <li><a href="/controls/logout.php">Logout</a></li>
     </ul>
 </nav>
