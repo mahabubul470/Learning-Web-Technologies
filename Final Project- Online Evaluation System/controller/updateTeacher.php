@@ -1,8 +1,7 @@
 <?php
 $nameErr = $passErr = $emailErr = $oidErr = $genderErr = $dobErr = $rePassErr = $upErr = "";
-$name  = $email =  $password = $gender = $dob = $rePass = $oid = "";
+$name  = $email =  $password = $gender = $dob = $rePass = $oid = $msg = "";
 $flag = false;
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (empty($_POST["name"])) {
@@ -59,35 +58,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $flag = true;
     }
 
-    if (empty($_POST["o-id"])) {
-        $oidErr = "Organization id required";
-        $flag = false;
-    } else {
-        $oid = test_input($_POST["re-password"]);
-        $flag = true;
-    }
-
     if ($password != $rePass) {
         $rePassErr = "Passwords doesnt not match";
         $flag = false;
     }
 
-    require_once '../model/model.php';
-    $data['name'] = $_POST['name'];
-    $data['email'] = $_POST['email'];
-    $data['gender'] = $gender;
-    $data['password'] = password_hash($_POST['password'], PASSWORD_BCRYPT, ["cost" => 12]);
-    $data['dob'] = $_POST['dob'];
-    $data['user-type'] = "admin";
-    $data['o-id'] = $_POST['o-id'];
-    $data['image'] = basename($_FILES["image"]["name"]);
-    $target_dir = "../uploads/";
-    $target_file = $target_dir . basename($_FILES["image"]["name"]);
-
-    if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
-        echo "The file " . basename($_FILES["image"]["name"]) . " has been uploaded.";
-    } else {
-        echo "Sorry, there was an error uploading your file.";
+    if ($flag == true) {
+        require_once '../model/model.php';
+        $data['name'] = $_POST['name'];
+        $data['email'] = $_POST['email'];
+        $data['gender'] = $gender;
+        $data['password'] = password_hash($_POST['password'], PASSWORD_BCRYPT, ["cost" => 12]);;
+        $data['dob'] = $_POST['dob'];
+        $data['usertype'] = "teacher";
+        $data['oid'] = $_POST['oid'];
+        if (editStudent($_POST['oid'], $data)) {
+            $msg = "Teacher Updated Sccessfully";
+        } else {
+            echo "There was a problem updating teacher";
+        }
     }
 }
 
@@ -97,17 +86,4 @@ function test_input($data)
     $data = stripslashes($data);
     $data = htmlspecialchars($data);
     return $data;
-}
-
-if ($flag == true) {
-    if (checkAdmin($_POST["o-id"])) {
-        echo "Already Registered with this id number";
-        $oidErr = "Already Registered with this id number";
-    } else {
-        if (addAdmin($data)) {
-            echo "Admin created successfully";
-        } else {
-            echo "There was a problem creating student";
-        }
-    }
 }

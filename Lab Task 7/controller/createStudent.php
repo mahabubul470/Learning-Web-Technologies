@@ -1,6 +1,8 @@
 <?php
+require_once '../model/model.php';
+require_once 'viewStudent.php';
 $nameErr = $passErr = $emailErr = $oidErr = $genderErr = $dobErr = $rePassErr = $upErr = "";
-$name  = $email =  $password = $gender = $dob = $rePass = $oid = "";
+$name  = $email =  $password = $gender = $dob = $rePass = $oid = $msg = "";
 $flag = false;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -12,10 +14,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $name = test_input($_POST["name"]);
         $flag = true;
     }
+
     if (empty($_POST["email"])) {
         $emailErr = "Email is required";
         $flag = false;
     } else {
+        $email = test_input($_POST["email"]);
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $emailErr = "Invalid email format";
+            $flag = false;
+        }
         $email = test_input($_POST["email"]);
         $flag = true;
     }
@@ -59,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $flag = true;
     }
 
-    if (empty($_POST["o-id"])) {
+    if (empty($_POST["oid"])) {
         $oidErr = "Organization id required";
         $flag = false;
     } else {
@@ -72,23 +80,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $flag = false;
     }
 
-    require_once '../model/model.php';
     $data['name'] = $_POST['name'];
     $data['email'] = $_POST['email'];
     $data['gender'] = $gender;
     $data['password'] = password_hash($_POST['password'], PASSWORD_BCRYPT, ["cost" => 12]);
     $data['dob'] = $_POST['dob'];
-    $data['user-type'] = "admin";
-    $data['o-id'] = $_POST['o-id'];
-    $data['image'] = basename($_FILES["image"]["name"]);
-    $target_dir = "../uploads/";
-    $target_file = $target_dir . basename($_FILES["image"]["name"]);
-
-    if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
-        echo "The file " . basename($_FILES["image"]["name"]) . " has been uploaded.";
-    } else {
-        echo "Sorry, there was an error uploading your file.";
-    }
+    $data['usertype'] = "student";
+    $data['oid'] = $_POST['oid'];
 }
 
 function test_input($data)
@@ -98,16 +96,14 @@ function test_input($data)
     $data = htmlspecialchars($data);
     return $data;
 }
-
 if ($flag == true) {
-    if (checkAdmin($_POST["o-id"])) {
-        echo "Already Registered with this id number";
+    if (checkStudent($_POST['oid']) > 0 || checkAdmin($_POST['oid']) > 0 || checkTeacher($_POST['oid']) > 0) {
         $oidErr = "Already Registered with this id number";
     } else {
-        if (addAdmin($data)) {
-            echo "Admin created successfully";
+        if (addStudent($data)) {
+            $msg = "Student Added";
         } else {
-            echo "There was a problem creating student";
+            $msg = "There was a problem adding student";
         }
     }
 }
